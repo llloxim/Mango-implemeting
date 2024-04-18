@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 export default function Record() {
   const [form, setForm] = useState({
     name: "",
-    position: "",
+    joke: "",
     level: "",
   });
   const [isNew, setIsNew] = useState(true);
@@ -75,7 +75,7 @@ export default function Record() {
     } catch (error) {
       console.error('A problem occurred with your fetch operation: ', error);
     } finally {
-      setForm({ name: "", position: "", level: "" });
+      setForm({ name: "", joke: "", level: "" });
       navigate("/");
     }
   }
@@ -126,18 +126,18 @@ export default function Record() {
                 htmlFor="position"
                 className="block text-sm font-medium leading-6 text-slate-900"
               >
-                Position
+                Joke
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                   <input
                     type="text"
-                    name="position"
-                    id="position"
+                    name="joke"
+                    id="joke"
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-slate-900 placeholder:text-slate-400 focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="Developer Advocate"
                     value={form.position}
-                    onChange={(e) => updateForm({ position: e.target.value })}
+                    onChange={(e) => updateForm({ joke: e.target.value })}
                   />
                 </div>
               </div>

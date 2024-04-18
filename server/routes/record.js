@@ -13,14 +13,14 @@ const router = express.Router();
 
 // This section will help you get a list of all the records.
 router.get("/", async (req, res) => {
-  let collection = await db.collection("records");
+  let collection = await db.collection("jokes");
   let results = await collection.find({}).toArray();
   res.send(results).status(200);
 });
 
 // This section will help you get a single record by id
 router.get("/:id", async (req, res) => {
-  let collection = await db.collection("records");
+  let collection = await db.collection("jokes");
   let query = { _id: new ObjectId(req.params.id) };
   let result = await collection.findOne(query);
 
@@ -31,12 +31,18 @@ router.get("/:id", async (req, res) => {
 // This section will help you create a new record.
 router.post("/", async (req, res) => {
   try {
-    let newDocument = {
+    /* let newDocument = {
       name: req.body.name,
       position: req.body.position,
       level: req.body.level,
     };
-    let collection = await db.collection("records");
+    let collection = await db.collection("records"); */
+    let newDocument = {
+      name: req.body.name,
+      joke: req.body.joke,
+      level: req.body.level,
+    };
+    let collection = await db.collection("jokes");
     let result = await collection.insertOne(newDocument);
     res.send(result).status(204);
   } catch (err) {
@@ -57,7 +63,7 @@ router.patch("/:id", async (req, res) => {
       },
     };
 
-    let collection = await db.collection("records");
+    let collection = await db.collection("jokes");
     let result = await collection.updateOne(query, updates);
     res.send(result).status(200);
   } catch (err) {
@@ -71,7 +77,7 @@ router.delete("/:id", async (req, res) => {
   try {
     const query = { _id: new ObjectId(req.params.id) };
 
-    const collection = db.collection("records");
+    const collection = db.collection("jokes");
     let result = await collection.deleteOne(query);
 
     res.send(result).status(200);
