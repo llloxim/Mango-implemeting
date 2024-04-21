@@ -18,6 +18,23 @@ router.get("/", async (req, res) => {
   res.send(results).status(200);
 });
 
+
+// This section will help u get a list of records with a specified string contained in name
+router.post("/search", async (req, res) => {
+  try {
+    const query = { name: { $regex: req.body.searchTerm, $options: "i" } }; //
+
+    let collection = await db.collection("jokes");
+
+    let results = await collection.find(query).toArray();
+
+    res.status(200).send(results.map(e => e.name));
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error searching records");
+  }
+});
+
 // This section will help you get a single record by id
 router.get("/:id", async (req, res) => {
   let collection = await db.collection("jokes");

@@ -1,6 +1,12 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 import * as dotenv from 'dotenv';
-dotenv.config();
+let result = dotenv.config();
+if (result.error) {
+  console.error("Error loading .env file:", result.error);
+} else {
+  console.log("Loaded environment variables from .env file.");
+  console.log("Parsed variables:", result.parsed);
+}
     //const uri = process.env.ATLAS_URI;
 const uri = process.env.ATLAS_URI;
 const client = new MongoClient(uri, {
