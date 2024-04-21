@@ -28,7 +28,7 @@ router.post("/search", async (req, res) => {
 
     let results = await collection.find(query).toArray();
 
-    res.status(200).send(results.map(e => e.name));
+    res.status(200).send(results);
   } catch (err) {
     console.error(err);
     res.status(500).send("Error searching records");
