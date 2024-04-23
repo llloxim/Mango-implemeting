@@ -6,10 +6,12 @@ import SearchResultsList from "./components/SearchResultsList";
 const App = () => {
   const [searchResults, setSearchResults] = useState([]);
   return (
-    <div className="w-full p-6">
-      <Navbar />
-      <Search results={searchResults} setSearchResults={setSearchResults} />
-      <Outlet />
+    <div style={{ backgroundColor: '#83EFCD'}}>
+      <div className="w-full p-6">
+        <Navbar />
+        <Search results={searchResults} setSearchResults={setSearchResults} />
+        <Outlet />
+      </div>
     </div>
   );
 };
