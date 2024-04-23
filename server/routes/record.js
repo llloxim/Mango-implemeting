@@ -75,7 +75,7 @@ router.patch("/:id", async (req, res) => {
     const updates = {
       $set: {
         name: req.body.name,
-        position: req.body.position,
+        joke: req.body.joke,
         level: req.body.level,
       },
     };
